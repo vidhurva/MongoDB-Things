@@ -1,0 +1,60 @@
+> show dbs
+admin      0.000GB
+config     0.000GB
+local      0.000GB
+myclients  0.000GB
+> use myclients
+switched to db myclients
+> db.createUser({
+...         user: "Vidhur_va",
+...         pwd:"Passion6",
+...         roles: [ "readWrite", "dbAdmin" ]
+... });
+Successfully added user: { "user" : "Vidhur_va", "roles" : [ "readWrite", "dbAdmin" ] }
+
+> show collections
+customers
+> db.customers.insert({first_name:"Dhruv", last_name:"Sharma"});
+WriteResult({ "nInserted" : 1 })
+> db.customers.find();
+{ "_id" : ObjectId("5b7996a40d526f7433b394ea"), "first_name" : "Dhruv", "last_name" : "Sharma" }
+
+> db.customers.insert([{first_name:"Dhruvi", last_name:"Sharma", "sex": "female"}]);
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 1,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+> db.customers.find().pretty();
+{
+	"_id" : ObjectId("5b7996a40d526f7433b394ea"),
+	"first_name" : "Dhruv",
+	"last_name" : "Sharma"
+}
+{
+	"_id" : ObjectId("5b79980e8dddbb6633a8dd3e"),
+	"first_name" : "Dhruvi",
+	"last_name" : "Sharma",
+	"sex" : "female"
+}
+
+> db.customers.update({first_name:"Dhruv"},{first_name:"Dhruv", last_name:"Sharma", sex:"male"});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.customers.find().pretty();
+{
+	"_id" : ObjectId("5b7996a40d526f7433b394ea"),
+	"first_name" : "Dhruv",
+	"last_name" : "Sharma",
+	"sex" : "male"
+}
+{
+	"_id" : ObjectId("5b79980e8dddbb6633a8dd3e"),
+	"first_name" : "Dhruvi",
+	"last_name" : "Sharma",
+	"sex" : "female"
+}
