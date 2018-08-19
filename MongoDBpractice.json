@@ -7,7 +7,7 @@ myclients  0.000GB
 switched to db myclients
 > db.createUser({
 ...         user: "Vidhur_va",
-...         pwd:"Passion6",
+...         pwd:"********",
 ...         roles: [ "readWrite", "dbAdmin" ]
 ... });
 Successfully added user: { "user" : "Vidhur_va", "roles" : [ "readWrite", "dbAdmin" ] }
